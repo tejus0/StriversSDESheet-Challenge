@@ -1,20 +1,31 @@
 #include <bits/stdc++.h>
 
-vector<vector<int>> pairSum(vector<int> &input, int x){
+vector<vector<int>> pairSum(vector<int> &nums, 
+int target){
    // Write your code here.
-   sort(input.begin(),input.end());   
+   int n=nums.size();
    vector<vector<int>> ans;
-   for(int i=0;i<input.size();i++)
-{
-    int temp=input[i];
-    for(int j=i+1;j<input.size();j++)
-    {
-        if(temp+input[j]==x)
-        {
-          ans.push_back({min(temp, input[j]), max(temp, input[j])});
-        }
-    }
+   unordered_map<int, int> myMap;
+   for (int i = 0; i < nums.size(); i++) {
+      int count=myMap[target-nums[i]];
+      vector<int>p(2);
+      p[0]=nums[i];
+      p[1]=target-nums[i];
+      while(count--){
+         ans.push_back(p);
+      }
+      myMap[nums[i]]++;
+   }
+   for(int i=0;i<ans.size();i++){
+      vector<int> pair=ans[i];
+      if(pair[0]>pair[1]){
+         swap(pair[0],pair[1]);
+      }
+      ans[i]=pair;
+   }
+   sort(ans.begin(),ans.end());
+   return ans;
 }
-return ans;
-}
+
+
 
