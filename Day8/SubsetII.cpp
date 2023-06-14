@@ -1,5 +1,4 @@
-Brute Force Approach - Set Data Structure
-T
+// Brute Force Approach - Set Data Structure
 
 #include <bits/stdc++.h> 
 
